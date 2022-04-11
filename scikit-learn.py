@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
->>>>>>> origin/master
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -136,10 +129,6 @@ ax.yaxis.grid(True)
 # グラフを表示
 plt.tight_layout()
 plt.show()
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 
 # y=1のコストを計算する関数
 
@@ -178,7 +167,6 @@ plt.legend(loc='upper center')
 plt.tight_layout()
 plt.show()
 print()
-<<<<<<< HEAD
 
 
 class LogisticRegressionGD(object):
@@ -248,7 +236,3 @@ plt.ylabel('petal width [standardized]')
 plt.legend(loc='upper left')
 plt.tight_layout()
 plt.show()
-=======
-=======
->>>>>>> origin/master
->>>>>>> origin/master
