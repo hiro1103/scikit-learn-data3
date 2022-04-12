@@ -1,4 +1,7 @@
-from regex import P
+from sklearn import tree
+from pydotplus import graph_from_dot_data
+from sklearn.tree import export_graphviz
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
@@ -396,3 +399,33 @@ plt.ylim([0, 1.1])
 plt.xlabel('p(i=1)')
 plt.ylabel('impurity index')
 plt.show()
+
+# ジニ不純度を指標とする決定木のインスタンスを生成
+tree_model = DecisionTreeClassifier(
+    criterion='gini', max_depth=4, random_state=1)
+# 決定木のモデルを訓練データに適合させる
+tree_model.fit(X_train, y_train)
+X_combined = np.vstack((X_train, X_test))
+y_combined = np.hstack((y_train, y_test))
+plot_decision_regions(X_combined, y_combined, classifier=tree_model,
+                      test_idx=range(105, 150))
+plt.xlabel('petal length [cm]')
+plt.ylabel('petal width [cm]')
+plt.legend(loc='upper left')
+plt.tight_layout()
+plt.show()
+
+tree.plot_tree(tree_model)
+plt.show()
+
+dot_data = export_graphviz(tree_model,
+                           filled=True,
+                           rounded=True,
+                           class_names=['Setosa',
+                                        'Versicolor',
+                                        'Virginica'],
+                           feature_names=['petal length',
+                                          'petal width'],
+                           out_file=None)
+graph = graph_from_dot_data(dot_data)
+graph.write_png('tree.png')
